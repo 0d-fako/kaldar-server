@@ -39,7 +39,6 @@ public class OrderServiceTest {
         createOrderRequest.setDeliveryAddress("Ikate, Lagos, Nigeria");
         createOrderRequest.setWashingPreference("For the shirt please dont use detergent");
         createOrderRequest.setCreatedAt(LocalDateTime.now());
-        createOrderRequest.setOrderStatus(OrderStatus.PENDING_ACCEPTANCE.toString());
         return createOrderRequest;
     }
 
@@ -56,13 +55,6 @@ public class OrderServiceTest {
         assertThat(acceptOrderResponse).isNotNull();
     }
 
-    @Test
-    public void testThatCan_previewOrder(){
-        CreateOrderRequest createOrderRequest = buildCreateOrderRequest();
-        CreateOrderResponse createOrderResponse = orderService.placeOrder(createOrderRequest);
-        OrderTotalSummaryResponse orderTotalSummaryResponse = orderService.previewOrder(createOrderRequest);
-        assertThat(createOrderResponse).isNotNull();
-        assertThat(orderTotalSummaryResponse).isNotNull();
-    }
+
 
 }

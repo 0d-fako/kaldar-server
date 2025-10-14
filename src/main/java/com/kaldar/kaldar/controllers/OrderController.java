@@ -6,13 +6,13 @@ import com.kaldar.kaldar.dtos.request.CreateOrderRequest;
 import com.kaldar.kaldar.dtos.response.ApiResponse;
 import com.kaldar.kaldar.dtos.response.CreateOrderResponse;
 import com.kaldar.kaldar.kaldarService.interfaces.OrderService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import static com.kaldar.kaldar.contants.StatusResponse.ACCEPT_ORDER_SUCCESS_MESSAGE;
 import static com.kaldar.kaldar.contants.StatusResponse.ORDER_CREATED_SUCCESS_MESSAGE;
 
@@ -26,8 +26,8 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @PostMapping("/creat-order")
-    public ResponseEntity<ApiResponse<CreateOrderResponse>> createOrder(@RequestBody CreateOrderRequest createOrderRequest){
+    @PostMapping("/create-order")
+    public ResponseEntity<ApiResponse<CreateOrderResponse>> createOrder(@Valid @RequestBody CreateOrderRequest createOrderRequest){
         CreateOrderResponse createOrderResponse = orderService.placeOrder(createOrderRequest);
         ApiResponse<CreateOrderResponse> apiResponse = ApiResponse.<CreateOrderResponse>builder()
                 .isSuccess(true)

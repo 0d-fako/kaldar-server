@@ -1,5 +1,5 @@
 package com.kaldar.kaldar.dtos.request;
-import com.kaldar.kaldar.domain.entities.ClothItems;
+import com.kaldar.kaldar.domain.entities.OrderServiceItem;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -7,13 +7,13 @@ import java.util.List;
 public class CreateOrderRequest {
     private Long customerId;
     private Long dryCleanerId;
+
     private String pickupAddress;
     private String deliveryAddress;
-    private int quantity;
+
     private String washingPreference;
-    private String orderStatus;
     private LocalDateTime createdAt;
-    private List<ClothItems> clothes;
+    private List<OrderServiceItem> serviceItems;
 
     public Long getDryCleanerId() {
         return dryCleanerId;
@@ -21,30 +21,6 @@ public class CreateOrderRequest {
 
     public void setDryCleanerId(Long dryCleanerId) {
         this.dryCleanerId = dryCleanerId;
-    }
-
-    public List<ClothItems> getClothes() {
-        return clothes;
-    }
-
-    public void setClothes(List<ClothItems> clothes) {
-        this.clothes = clothes;
-    }
-
-    public String getOrderStatus() {
-        return orderStatus;
-    }
-
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public String getWashingPreference() {
@@ -87,4 +63,11 @@ public class CreateOrderRequest {
         this.deliveryAddress = deliveryAddress;
     }
 
+    public List<OrderServiceItem> getServiceItems() {
+        return serviceItems;
+    }
+
+    public void setServiceItems(List<OrderServiceItem> serviceItems) {
+        this.serviceItems = serviceItems;
+    }
 }

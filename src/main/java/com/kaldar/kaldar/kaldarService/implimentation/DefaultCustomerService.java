@@ -72,7 +72,6 @@ public class DefaultCustomerService implements CustomerService {
         sendVerificationEmailResponse.setEmail(customerEntity.getEmail());
         sendVerificationEmailResponse.setExpiresAt(expiredAt.toString());
         sendVerificationEmailResponse.setVerificationMessage(VERIFICATION_TOKEN_SENT_MESSAGE.getMessage());
-
         CustomerRegistrationResponse customerRegistrationResponse = new CustomerRegistrationResponse();
         customerRegistrationResponse.setMessage(CUSTOMER_REGISTRATION_SUCCESS_MESSAGE.getMessage());
         return customerRegistrationResponse;

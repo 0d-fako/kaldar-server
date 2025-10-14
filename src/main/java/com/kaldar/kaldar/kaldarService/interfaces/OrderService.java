@@ -11,6 +11,6 @@ public interface OrderService {
 
     CreateOrderResponse placeOrder(CreateOrderRequest createOrderRequest);
 
-    OrderTotalSummaryResponse previewOrder(CreateOrderRequest createOrderRequest);
+//    OrderTotalSummaryResponse previewOrder(CreateOrderRequest createOrderRequest);
 
 }

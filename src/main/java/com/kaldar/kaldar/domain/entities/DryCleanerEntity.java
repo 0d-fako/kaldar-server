@@ -3,9 +3,10 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
-
 import java.time.LocalDateTime;
 import java.util.List;
+
+
 
 @Entity
 public class DryCleanerEntity extends UserEntity{
@@ -18,10 +19,11 @@ public class DryCleanerEntity extends UserEntity{
     @OneToMany(mappedBy = "dryCleaner", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<OrderEntity> orderEntityList;
     @OneToMany(mappedBy = "dryCleaner")
-    private List<ServiceOfferings> serviceOfferings;
+    private List<ServiceOffering> serviceOfferings;
     private boolean isActive;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
 
 
     public LocalDateTime getCreatedAt() {
@@ -72,11 +74,11 @@ public class DryCleanerEntity extends UserEntity{
         this.orderEntityList = orderEntityList;
     }
 
-    public List<ServiceOfferings> getServiceOfferings() {
+    public List<ServiceOffering> getServiceOfferings() {
         return serviceOfferings;
     }
 
-    public void setServiceOfferings(List<ServiceOfferings> serviceOfferings) {
+    public void setServiceOfferings(List<ServiceOffering> serviceOfferings) {
         this.serviceOfferings = serviceOfferings;
     }
 

@@ -1,11 +1,11 @@
 server:
-  port: ${PORT:8050}
+  port: 8050
 spring:
   application:
     name: kaldar
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: ${DATA_BASE_URL:jdbc:postgresql://${DATA_BASE_HOST}:${DATA_BASE_PORT}/${DATA_BASE_NAME}}
+    url: ${DATA_BASE_URL:jdbc:postgresql://${DATA_BASE_HOST}:${DATA_BASE_PORT:5432}/${DATA_BASE_NAME}}
     hikari:
       username: ${DATA_BASE_USERNAME:postgres}
       password: ${DATA_BASE_PASSWORD:122024Clux!}
@@ -14,10 +14,9 @@ spring:
       ddl-auto: update
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-
   mail:
     host: smtp.gmail.com
-    port: ${MAIL_PORT}
+    port: ${MAIL_PORT:587}
     username: ${MAIL_USERNAME}
     password: ${MAIL_PASSWORD}
     from-name: "Kaldar"
@@ -29,7 +28,6 @@ security:
   otp:
     digit: ${OTP_DIGIT:6}
     expiry-minutes: ${OTP_EXPIRATION:1}
-
 jwt:
     secret:
       key: ${JWT_SECRET_KEY}
