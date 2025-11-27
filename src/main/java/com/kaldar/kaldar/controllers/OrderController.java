@@ -5,14 +5,12 @@ import com.kaldar.kaldar.dtos.request.AcceptOrderResponse;
 import com.kaldar.kaldar.dtos.request.CreateOrderRequest;
 import com.kaldar.kaldar.dtos.response.ApiResponse;
 import com.kaldar.kaldar.dtos.response.CreateOrderResponse;
+import com.kaldar.kaldar.dtos.response.UpdateOrderStatusResponse;
 import com.kaldar.kaldar.kaldarService.interfaces.OrderService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import static com.kaldar.kaldar.contants.StatusResponse.ACCEPT_ORDER_SUCCESS_MESSAGE;
 import static com.kaldar.kaldar.contants.StatusResponse.ORDER_CREATED_SUCCESS_MESSAGE;
 
@@ -47,5 +45,21 @@ public class OrderController {
                 .data(acceptOrderResponse)
                 .build();
         return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
+    }
+
+    @PatchMapping("/{orderId}/status")
+    public ResponseEntity<ApiResponse<UpdateOrderStatusResponse>> updateOrderStatus(
+            @PathVariable Long orderId,
+            @Valid @RequestBody com.kaldar.kaldar.dtos.request.UpdateOrderStatusRequest request
+    ){
+        request.setOrderId(orderId);
+        UpdateOrderStatusResponse response = orderService.updateOrderStatus(request);
+        ApiResponse<UpdateOrderStatusResponse> api = ApiResponse.<UpdateOrderStatusResponse>builder()
+                .isSuccess(true)
+                .status(HttpStatus.OK.value())
+                .message("Order status updated")
+                .data(response)
+                .build();
+        return ResponseEntity.ok(api);
     }
 }
